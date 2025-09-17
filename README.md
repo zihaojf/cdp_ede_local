@@ -1,11 +1,16 @@
 # LoongArch CPU 设计实验
 对应实验手册请参阅[《LoongArch CPU设计实验》](https://bookdown.org/loongson/_book3/)。
 
+## 官方支持实验设备
+
+1. 龙芯CPU FPGA教学实验系统V2.1 (**龙芯本地FPGA**)：[ 原理图&管脚对应关系 ](https://gitee.com/loongson-edu/loongson-local-fpga)
+2. 计算机系统能力培养远程实验平台（**龙芯远程FPGA**）：[ 原理图&管脚对应关系 ](https://gitee.com/loongson-edu/fpga)、[ 实验环境 ](https://gitee.com/loongson-edu/cdp_ede_remote)
+3. 龙芯处理器设计全流程教学实验系统V1.0 （**龙芯百芯FPGA**）：[ 原理图&管脚对应关系 ](https://gitee.com/loongson-edu/fpga)
+## 实验安排简介
+
 >**NOTE:** 
 >  1. minicpu_env/miniCPU/目录下的代码功能不全，是有意为之，无需提issue修正。
 >  2. mycpu_env/myCPU/目录下的代码有功能错误，亦是有意为之，无需提issue修正。
-
-## 实验安排简介
 
 ### **dc_env**
 exp1  : 跑马灯实验。熟悉Vivado和FPGA实验环境基本使用技能。

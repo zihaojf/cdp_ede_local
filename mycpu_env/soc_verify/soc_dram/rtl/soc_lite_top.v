@@ -163,7 +163,7 @@ inst_ram inst_ram
 (
     .clk   (cpu_clk            ),   
     .we    (cpu_inst_we        ),   
-    .a     (cpu_inst_addr[17:2]),   
+    .a     (cpu_inst_addr[13:2]),
     .d     (cpu_inst_wdata     ),   
     .spo   (cpu_inst_rdata     )   
 );
@@ -224,4 +224,3 @@ confreg #(.SIMULATION(SIMULATION)) u_confreg
 );
 
 endmodule
-

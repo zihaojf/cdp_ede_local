@@ -1,6 +1,10 @@
 #define TLBREBASE 0xf000
 #define DATABASE  0x1d0000
-#define CODEBASE  0x10000
+#if EXP == 6
+  #define CODEBASE 0x140
+#else
+  #define CODEBASE 0x10000
+#endif
 
 #define TLB_ENTRY 16
 #define TLB_IDX 4
@@ -189,4 +193,3 @@
     GET_ESUBCODE\
     li.w     t1, esubcode;\
     bne      t0, t1, ex_finish;
-

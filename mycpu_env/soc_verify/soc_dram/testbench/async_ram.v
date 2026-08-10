@@ -39,7 +39,7 @@ end
 endmodule
 
 module inst_ram #(
-	parameter ADDR_WIDTH = 15,
+	parameter ADDR_WIDTH = 12,
 	parameter DATA_WIDTH = 32,
 	parameter DEPTH = 1 << ADDR_WIDTH
 )

@@ -24,5 +24,8 @@ add_files -scan_for_includes ../../../myCPU
 # Add constraints
 add_files -fileset constrs_1 -quiet ./constraints
 
+set_property -name "top" -value "soc_lite_top" -objects [get_filesets sources_1]
 set_property -name "top" -value "tb_top" -objects  [get_filesets sim_1]
 set_property -name "xsim.simulate.log_all_signals" -value "1" -objects [get_filesets sim_1]
+update_compile_order -fileset sources_1
+update_compile_order -fileset sim_1

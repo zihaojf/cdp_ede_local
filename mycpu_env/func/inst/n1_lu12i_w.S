@@ -8,6 +8,21 @@ LEAF(n1_lu12i_w_test)
     addi.w    s2, zero, 0x0
     lu12i.w   t2, 0x1
 ###test inst
+#if SHORT_TEST1
+    addi.w    t1, zero, 0x0
+    TEST_LU12I_W(0x00000, 0x00000)
+    TEST_LU12I_W(0x11011, 0x11010)
+    TEST_LU12I_W(0x22022, 0x22020)
+    TEST_LU12I_W(0x33033, 0x33030)
+    TEST_LU12I_W(0x44044, 0x44040)
+    TEST_LU12I_W(0x55045, 0x55040)
+    TEST_LU12I_W(0x66056, 0x66050)
+    TEST_LU12I_W(0x88067, 0x88060)
+    TEST_LU12I_W(0xaa078, 0xaa070)
+    TEST_LU12I_W(0xcc089, 0xcc080)
+    TEST_LU12I_W(0xee09a, 0xee090)
+    TEST_LU12I_W(0xff0ab, 0xff0a0)
+#else
     addi.w    t1, zero, 0x0
     TEST_LU12I_W(0x00000, 0x00000)
     TEST_LU12I_W(0x00001, 0x00000)
@@ -214,6 +229,7 @@ LEAF(n1_lu12i_w_test)
     TEST_LU12I_W(0xff0ae, 0xff0a0)
     TEST_LU12I_W(0xff0af, 0xff0a0)
   #endif
+#endif
 ###detect exception
     bne s2, zero, inst_error
     NOP4

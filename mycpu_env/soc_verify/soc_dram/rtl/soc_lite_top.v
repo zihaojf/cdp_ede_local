@@ -195,7 +195,7 @@ data_ram data_ram
 (
     .clk   (cpu_clk            ),   
     .we    (data_sram_we & data_sram_en),   
-    .a     (data_sram_addr[17:2]),   
+    .a     (data_sram_addr[11:2]),
     .d     (data_sram_wdata    ),   
     .spo   (data_sram_rdata    )   
 );

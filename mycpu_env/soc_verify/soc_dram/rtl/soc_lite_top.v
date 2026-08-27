@@ -191,11 +191,25 @@ bridge_1x2 bridge_1x2(
  );
 
 //data ram
+wire [9:0] data_ram_addr;
+generate
+if (SIMULATION)
+begin: sanitize_data_ram_addr
+    assign data_ram_addr = (^data_sram_addr[11:2] === 1'bx)
+                         ? 10'b0
+                         : data_sram_addr[11:2];
+end
+else
+begin
+    assign data_ram_addr = data_sram_addr[11:2];
+end
+endgenerate
+
 data_ram data_ram
 (
     .clk   (cpu_clk            ),   
     .we    (data_sram_we & data_sram_en),   
-    .a     (data_sram_addr[11:2]),
+    .a     (data_ram_addr       ),
     .d     (data_sram_wdata    ),   
     .spo   (data_sram_rdata    )   
 );

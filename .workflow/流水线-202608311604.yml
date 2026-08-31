@@ -1,0 +1,47 @@
+version: "1.0"
+name: 流水线-202608311604
+displayName: 流水线-202608311604
+stages:
+- name: generate
+  displayName: 生成 COE 和 Trace
+  strategy: naturally
+  trigger: auto
+  steps:
+  - step: execute@docker
+    name: generate_experiments
+    displayName: 生成实验文件
+    image: registry.cn-hangzhou.aliyuncs.com/loongson/la32r-dev:latest
+    command:
+    - bash .workflow/script/generate.sh
+    - for num in {6..16} 18 19 {21..23}; do test -s "output/exp${num}/func/obj/inst_ram.coe"; test -s "output/exp${num}/gettrace/golden_trace.txt"; done
+    artifacts:
+    - name: GENERATED_EXPERIMENTS
+      path:
+      - output
+    strategy:
+      retry: "0"
+      stepTimeout: 30
+      resource:
+        cpu: "1"
+        memory: "2"
+- name: publish
+  displayName: 发布生成文件
+  strategy: naturally
+  trigger: auto
+  steps:
+  - step: publish@general_artifacts
+    name: publish_generated_experiments
+    displayName: 上传流水线制品
+    dependArtifact: GENERATED_EXPERIMENTS
+    artifactName: cdp-ede-output
+    strategy:
+      retry: "0"
+triggers:
+  trigger: auto
+  push:
+    branches:
+      prefix:
+      - ""
+      precise: []
+      include: []
+notify: []

@@ -4,6 +4,15 @@ set -euo pipefail
 scriptPath="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 repoPath="$(cd -- "$scriptPath/../.." && pwd)"
 outputPath="$repoPath/output"
+traceTempPath="$(mktemp -d)"
+traceBuildPath="$traceTempPath/obj_dir"
+
+cleanup()
+{
+    rm -rf -- "$traceTempPath"
+}
+
+trap cleanup EXIT
 
 log()
 {
@@ -15,6 +24,17 @@ log "开始生成 EXP1-EXP23"
 
 rm -rf -- "$outputPath"
 mkdir -p -- "$outputPath"
+
+log "编译 Verilator trace 仿真器"
+if ! make \
+    -C "$repoPath/mycpu_env/gettrace" \
+    verilator-build \
+    VERILATOR_MDIR="$traceBuildPath" \
+    >"$traceTempPath/build.log" 2>&1
+then
+    cat "$traceTempPath/build.log"
+    exit 1
+fi
 
 for num in {1..23}
 do
@@ -40,7 +60,10 @@ do
         log "$progress EXP$num：生成 COE 文件"
         make -C "$expPath/func" EXP="$num"
         log "$progress EXP$num：生成 trace 比对文件"
-        make -C "$expPath/gettrace" iverilog
+        make \
+            -C "$expPath/gettrace" \
+            verilator-run \
+            VERILATOR_MDIR="$traceBuildPath"
 
         log "$progress EXP$num：整理实验目录"
         if [ "$num" -eq 6 ]; then # need dram

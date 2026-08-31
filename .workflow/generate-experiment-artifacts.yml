@@ -1,6 +1,6 @@
 version: "1.0"
-name: 流水线-202608311604
-displayName: 流水线-202608311604
+name: generate-experiment-artifacts
+displayName: 生成实验文件
 stages:
 - name: generate
   displayName: 生成 COE 和 Trace

@@ -1,43 +1,44 @@
+#Nexys4 DDR (xc7a100tcsg324-1) constraint, ported from the Loongson local FPGA board
+
 #set_property SEVERITY {Warning} [get_drc_checks RTSTAT-2]
-#时钟信号连接
-set_property PACKAGE_PIN AC19 [get_ports clk]
-set_property CLOCK_DEDICATED_ROUTE BACKBONE [get_nets clk]
-create_clock -period 10.000 -name clk -waveform {0.000 5.000} [get_ports clk]
+set_property SEVERITY {Warning} [get_drc_checks NSTD-1]
+set_property SEVERITY {Warning} [get_drc_checks UCIO-1]
+
+#clock signal: 100MHz on pin E3 (dedicated MRCC clock input)
+set_property -dict { PACKAGE_PIN E3 IOSTANDARD LVCMOS33 } [get_ports clk]
+create_clock -add -name sys_clk_pin -period 10.000 -waveform {0.000 5.000} [get_ports clk]
 
 #reset
-set_property PACKAGE_PIN Y3 [get_ports resetn]
-
+set_property -dict { PACKAGE_PIN C12 IOSTANDARD LVCMOS33 } [get_ports resetn]
 
 #LED
-set_property PACKAGE_PIN K23 [get_ports {led[0]}]
-set_property PACKAGE_PIN J21 [get_ports {led[1]}]
-set_property PACKAGE_PIN H23 [get_ports {led[2]}]
-set_property PACKAGE_PIN J19 [get_ports {led[3]}]
-set_property PACKAGE_PIN G9 [get_ports {led[4]}]
-set_property PACKAGE_PIN J26 [get_ports {led[5]}]
-set_property PACKAGE_PIN J23 [get_ports {led[6]}]
-set_property PACKAGE_PIN J8 [get_ports {led[7]}]
-set_property PACKAGE_PIN H8 [get_ports {led[8]}]
-set_property PACKAGE_PIN G8 [get_ports {led[9]}]
-set_property PACKAGE_PIN F7 [get_ports {led[10]}]
-set_property PACKAGE_PIN A4 [get_ports {led[11]}]
-set_property PACKAGE_PIN A5 [get_ports {led[12]}]
-set_property PACKAGE_PIN A3 [get_ports {led[13]}]
-set_property PACKAGE_PIN D5 [get_ports {led[14]}]
-set_property PACKAGE_PIN H7 [get_ports {led[15]}]
+set_property PACKAGE_PIN H17 [get_ports {led[0]}]
+set_property PACKAGE_PIN K15 [get_ports {led[1]}]
+set_property PACKAGE_PIN J13 [get_ports {led[2]}]
+set_property PACKAGE_PIN N14 [get_ports {led[3]}]
+set_property PACKAGE_PIN R18 [get_ports {led[4]}]
+set_property PACKAGE_PIN V17 [get_ports {led[5]}]
+set_property PACKAGE_PIN U17 [get_ports {led[6]}]
+set_property PACKAGE_PIN U16 [get_ports {led[7]}]
+set_property PACKAGE_PIN V16 [get_ports {led[8]}]
+set_property PACKAGE_PIN T15 [get_ports {led[9]}]
+set_property PACKAGE_PIN U14 [get_ports {led[10]}]
+set_property PACKAGE_PIN T16 [get_ports {led[11]}]
+set_property PACKAGE_PIN V15 [get_ports {led[12]}]
+set_property PACKAGE_PIN V14 [get_ports {led[13]}]
+set_property PACKAGE_PIN V12 [get_ports {led[14]}]
+set_property PACKAGE_PIN V11 [get_ports {led[15]}]
 
 #switch
-set_property PACKAGE_PIN AC21 [get_ports {switch[7]}]
-set_property PACKAGE_PIN AD24 [get_ports {switch[6]}]
-set_property PACKAGE_PIN AC22 [get_ports {switch[5]}]
-set_property PACKAGE_PIN AC23 [get_ports {switch[4]}]
-set_property PACKAGE_PIN AB6  [get_ports {switch[3]}]
-set_property PACKAGE_PIN W6   [get_ports {switch[2]}]
-set_property PACKAGE_PIN AA7  [get_ports {switch[1]}]
-set_property PACKAGE_PIN Y6   [get_ports {switch[0]}]
+set_property PACKAGE_PIN J15 [get_ports {switch[0]}]
+set_property PACKAGE_PIN L16 [get_ports {switch[1]}]
+set_property PACKAGE_PIN M13 [get_ports {switch[2]}]
+set_property PACKAGE_PIN R15 [get_ports {switch[3]}]
+set_property PACKAGE_PIN R17 [get_ports {switch[4]}]
+set_property PACKAGE_PIN T18 [get_ports {switch[5]}]
+set_property PACKAGE_PIN U18 [get_ports {switch[6]}]
+set_property PACKAGE_PIN R13 [get_ports {switch[7]}]
 
-set_property IOSTANDARD LVCMOS33 [get_ports clk]
-set_property IOSTANDARD LVCMOS33 [get_ports resetn]
 set_property IOSTANDARD LVCMOS33 [get_ports {led[*]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {switch[*]}]
 

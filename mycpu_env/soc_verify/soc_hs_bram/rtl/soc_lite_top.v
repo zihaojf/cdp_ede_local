@@ -81,6 +81,9 @@ module soc_lite_top #(parameter SIMULATION=1'b0)
     input  wire [3 :0] btn_key_row,
     input  wire [1 :0] btn_step
 );
+//segment polarity: active-low
+wire [6:0] num_a_g_p;
+assign num_a_g = ~num_a_g_p;
 //debug signals
 wire [31:0] debug_wb_pc;
 wire [3 :0] debug_wb_rf_we;
@@ -221,7 +224,7 @@ inst_ram inst_ram
     .clka  (cpu_clk            ),   
     .ena   (inst_ram_en        ),
     .wea   (inst_ram_we        ),   //3:0
-    .addra (inst_ram_addr[19:2]),   //17:0
+    .addra (inst_ram_addr[17:2]),   //15:0
     .dina  (inst_ram_wdata     ),   //31:0
     .douta (inst_ram_rdata     )    //31:0
 );
@@ -320,7 +323,7 @@ confreg #(.SIMULATION(SIMULATION)) u_confreg
     .led_rg0         ( led_rg0       ),  // o, 2      
     .led_rg1         ( led_rg1       ),  // o, 2      
     .num_csn         ( num_csn       ),  // o, 8      
-    .num_a_g         ( num_a_g       ),  // o, 7      
+    .num_a_g         ( num_a_g_p    ),  // o, 7
     .num_data        ( num_data      ),  // o, 32
     .switch          ( switch        ),  // i, 8     
     .btn_key_col     ( btn_key_col   ),  // o, 4          

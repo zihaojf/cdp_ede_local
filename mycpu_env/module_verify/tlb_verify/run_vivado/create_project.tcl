@@ -1,4 +1,4 @@
-create_project -force loongson ./project -part xc7a200tfbg676-1
+create_project -force loongson ./project -part xc7a100tcsg324-1
 
 # Add conventional sources
 add_files -scan_for_includes [glob -nocomplain ../rtl/*.v]

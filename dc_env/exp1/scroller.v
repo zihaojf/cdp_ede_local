@@ -51,7 +51,8 @@ always @(posedge clk)
 begin
     if (!resetn)
     begin
-        led <= 16'hfffe;
+        //LED polarity: active high
+        led <= 16'h0001;
     end
     else if (cnt_eq_1s)
     begin

@@ -161,7 +161,8 @@ confreg u_confreg
 assign conf_we    = cpu_data_we && cpu_data_addr == 12'd1028;
 assign conf_wdata = cpu_data_wdata;
 
-assign led = ~conf_led; 
+//LED polarity: active high 
+assign led = conf_led;
 
 endmodule
 

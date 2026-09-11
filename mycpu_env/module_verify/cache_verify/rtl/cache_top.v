@@ -10,8 +10,12 @@ module cache_top #
     output wire [15:0] led,
     input  wire [7 :0] switch,       
     output reg  [7 :0] num_csn,
-    output reg  [6 :0] num_a_g
+    output wire [6:0] num_a_g
 );
+//segment polarity: active-low
+reg [6:0] num_a_g_p;
+assign num_a_g = ~num_a_g_p;
+
 clk_pll clk_pll(
     .clk_out1(clk_g),
     .clk_in1(clk)
@@ -387,31 +391,32 @@ always @(posedge clk_g)
 begin
     if ( !resetn )
     begin
-        num_a_g <= 7'b0000000;
+        num_a_g_p <= 7'b0000000;
     end
     else
     begin
         case ( scan_data )
-            4'd0 : num_a_g <= 7'b1111110;   //0
-            4'd1 : num_a_g <= 7'b0110000;   //1
-            4'd2 : num_a_g <= 7'b1101101;   //2
-            4'd3 : num_a_g <= 7'b1111001;   //3
-            4'd4 : num_a_g <= 7'b0110011;   //4
-            4'd5 : num_a_g <= 7'b1011011;   //5
-            4'd6 : num_a_g <= 7'b1011111;   //6
-            4'd7 : num_a_g <= 7'b1110000;   //7
-            4'd8 : num_a_g <= 7'b1111111;   //8
-            4'd9 : num_a_g <= 7'b1111011;   //9
-            4'd10: num_a_g <= 7'b1110111;   //a
-            4'd11: num_a_g <= 7'b0011111;   //b
-            4'd12: num_a_g <= 7'b1001110;   //c
-            4'd13: num_a_g <= 7'b0111101;   //d
-            4'd14: num_a_g <= 7'b1001111;   //e
-            4'd15: num_a_g <= 7'b1000111;   //f
+            4'd0 : num_a_g_p <= 7'b1111110;   //0
+            4'd1 : num_a_g_p <= 7'b0110000;   //1
+            4'd2 : num_a_g_p <= 7'b1101101;   //2
+            4'd3 : num_a_g_p <= 7'b1111001;   //3
+            4'd4 : num_a_g_p <= 7'b0110011;   //4
+            4'd5 : num_a_g_p <= 7'b1011011;   //5
+            4'd6 : num_a_g_p <= 7'b1011111;   //6
+            4'd7 : num_a_g_p <= 7'b1110000;   //7
+            4'd8 : num_a_g_p <= 7'b1111111;   //8
+            4'd9 : num_a_g_p <= 7'b1111011;   //9
+            4'd10: num_a_g_p <= 7'b1110111;   //a
+            4'd11: num_a_g_p <= 7'b0011111;   //b
+            4'd12: num_a_g_p <= 7'b1001110;   //c
+            4'd13: num_a_g_p <= 7'b0111101;   //d
+            4'd14: num_a_g_p <= 7'b1001111;   //e
+            4'd15: num_a_g_p <= 7'b1000111;   //f
         endcase
     end
 end
 
-assign led = {16'hffff};
+//LED polarity: active high 
+assign led = 16'h0000;
 
 endmodule

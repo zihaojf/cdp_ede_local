@@ -45,7 +45,8 @@ begin
 end
 
 //show led: previous value
-assign led = ~prev_data;
+//LED polarity: active high
+assign led = prev_data;
 
 //show number: new value
 show_num u_show_num(
@@ -65,11 +66,15 @@ module show_num (
     input             resetn,     
 
     input      [3 :0] show_data,
-    output     [7 :0] num_csn,      
-    output reg [6 :0] num_a_g      
+    output     [7 :0] num_csn,
+    output wire [6:0] num_a_g
 );
 //digital number display
 assign num_csn = 8'b0111_1111;
+
+//segment polarity: active-low
+reg [6:0] num_a_g_p;
+assign num_a_g = ~num_a_g_p;
 
 wire [6:0] nxt_a_g;
 
@@ -77,17 +82,17 @@ always @(posedge clk)
 begin
     if ( !resetn )
     begin
-        num_a_g <= 7'b0000000;
+        num_a_g_p <= 7'b0000000;
     end
     else
     begin
-        num_a_g <= nxt_a_g;
+        num_a_g_p <= nxt_a_g;
     end
 end
 
 //keep unchange if show_data>=10
 wire [6:0] keep_a_g;
-assign     keep_a_g = num_a_g + nxt_a_g;
+assign     keep_a_g = num_a_g_p + nxt_a_g;
 
 assign nxt_a_g = show_data==4'd0 ? 7'b1111110 :   //0
                  show_data==4'd1 ? 7'b0110000 :   //1

@@ -1,0 +1,6 @@
+# minicpu_top.v carries the lab answers on the solution branch.
+# "merge=ours" makes each branch keep its own version of this file
+# whenever both sides have modified it since the merge base, so
+# merging will never silently swap the student blanks for answers
+# (or vice versa). Requires: git config merge.ours.driver true
+minicpu_env/miniCPU/minicpu_top.v merge=ours

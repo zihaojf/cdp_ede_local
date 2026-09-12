@@ -47,13 +47,13 @@ set_property PACKAGE_PIN T9  [get_ports {num_csn[2]}]
 set_property PACKAGE_PIN J18 [get_ports {num_csn[1]}]
 set_property PACKAGE_PIN J17 [get_ports {num_csn[0]}]
 
-set_property PACKAGE_PIN T10 [get_ports {num_a_g[0]}]
-set_property PACKAGE_PIN R10 [get_ports {num_a_g[1]}]
-set_property PACKAGE_PIN K16 [get_ports {num_a_g[2]}]
-set_property PACKAGE_PIN K13 [get_ports {num_a_g[3]}]
-set_property PACKAGE_PIN P15 [get_ports {num_a_g[4]}]
-set_property PACKAGE_PIN T11 [get_ports {num_a_g[5]}]
-set_property PACKAGE_PIN L18 [get_ports {num_a_g[6]}]
+set_property PACKAGE_PIN T10 [get_ports {num_a_g[6]}]   ;#CA
+set_property PACKAGE_PIN R10 [get_ports {num_a_g[5]}]   ;#CB
+set_property PACKAGE_PIN K16 [get_ports {num_a_g[4]}]   ;#CC
+set_property PACKAGE_PIN K13 [get_ports {num_a_g[3]}]   ;#CD
+set_property PACKAGE_PIN P15 [get_ports {num_a_g[2]}]   ;#CE
+set_property PACKAGE_PIN T11 [get_ports {num_a_g[1]}]   ;#CF
+set_property PACKAGE_PIN L18 [get_ports {num_a_g[0]}]   ;#CG
 
 #switch
 set_property PACKAGE_PIN J15 [get_ports {switch[0]}]

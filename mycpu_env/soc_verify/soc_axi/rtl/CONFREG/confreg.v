@@ -782,7 +782,7 @@ begin
     end
     else
     begin
-        case(count[19:17])
+        case(count[16:14])
             3'b000 : scan_data <= num_data[31:28];
             3'b001 : scan_data <= num_data[27:24];
             3'b010 : scan_data <= num_data[23:20];
@@ -793,7 +793,7 @@ begin
             3'b111 : scan_data <= num_data[3 : 0];
         endcase
 
-        case(count[19:17])
+        case(count[16:14])
             3'b000 : num_csn <= 8'b0111_1111;
             3'b001 : num_csn <= 8'b1011_1111;
             3'b010 : num_csn <= 8'b1101_1111;

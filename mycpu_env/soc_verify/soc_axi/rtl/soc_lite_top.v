@@ -84,6 +84,9 @@ module soc_lite_top #(parameter SIMULATION=1'b0)
 //segment polarity: active-low
 wire [6:0] num_a_g_p;
 assign num_a_g = ~num_a_g_p;
+//LED polarity: active-low
+wire [15:0] led_p;
+assign led = ~led_p;
 //debug signals
 wire [31:0] debug_wb_pc;
 wire [3 :0] debug_wb_rf_we;
@@ -593,13 +596,13 @@ confreg #(.SIMULATION(SIMULATION)) u_confreg
     .bready      (conf_bready  ), 
 
     .ram_random_mask ( ram_random_mask ),
-    .led         ( led        ),  // o, 16   
+    .led         ( led_p        ),  // o, 16   
     .led_rg0     ( led_rg0    ),  // o, 2      
     .led_rg1     ( led_rg1    ),  // o, 2      
     .num_csn     ( num_csn    ),  // o, 8     
     .num_a_g     ( num_a_g_p  ),  // o, 7
     .num_data    ( num_data   ),  // o, 32
-    .switch      ( switch     ),  // i, 8     
+    .switch      ( ~switch     ),  // i, 8     
     .btn_key_col ( btn_key_col),  // o, 4          
     .btn_key_row ( btn_key_row),  // i, 4           
     .btn_step    ( btn_step   )   // i, 2   

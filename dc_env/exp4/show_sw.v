@@ -94,15 +94,15 @@ end
 wire [6:0] keep_a_g;
 assign     keep_a_g = num_a_g_p + nxt_a_g;
 
-assign nxt_a_g = show_data==4'd0 ? 7'b1111110 :   //0
-                 show_data==4'd1 ? 7'b0110000 :   //1
-                 show_data==4'd2 ? 7'b1101101 :   //2
-                 show_data==4'd3 ? 7'b1111001 :   //3
-                 show_data==4'd4 ? 7'b0110011 :   //4
-                 show_data==4'd5 ? 7'b1011011 :   //5
-                 show_data==4'd7 ? 7'b1110000 :   //7
+assign nxt_a_g = show_data==4'd0 ? 7'b0111111 :   //0
+                 show_data==4'd1 ? 7'b0000110 :   //1
+                 show_data==4'd2 ? 7'b1011011 :   //2
+                 show_data==4'd3 ? 7'b1001111 :   //3
+                 show_data==4'd4 ? 7'b1100110 :   //4
+                 show_data==4'd5 ? 7'b1101101 :   //5
+                 show_data==4'd7 ? 7'b0000111 :   //7
                  show_data==4'd8 ? 7'b1111111 :   //8
-                 show_data==4'd9 ? 7'b1111011 :   //9
+                 show_data==4'd9 ? 7'b1101111 :   //9
                                    keep_a_g   ;
 endmodule
 //----------------------------{digital number}end------------------------//

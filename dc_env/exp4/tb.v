@@ -18,18 +18,18 @@ always #5 clk = ~clk;
 initial
 begin
     #100;
-    switch = 4'hf;
+    switch = 4'h0;
     #500;
     #1;
-    switch = 4'h8;  //~switch: 7
+    switch = 4'h7;  //switch: 7
     #100;
-    switch = 4'h9;  //~switch: 6
+    switch = 4'h6;  //switch: 6
     #100;
-    switch = 4'he;  //~switch: 1
+    switch = 4'h1;  //switch: 1
     #100;
-    switch = 4'h2;  //~switch: d
+    switch = 4'hd;  //switch: d
     #100;
-    switch = 4'h0;  //~switch: f
+    switch = 4'hf;  //switch: f
 end
 
 show_sw  u_show_sw(

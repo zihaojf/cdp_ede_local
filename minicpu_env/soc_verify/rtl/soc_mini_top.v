@@ -135,7 +135,7 @@ minicpu_top cpu(
     .data_sram_rdata  (cpu_data_rdata)
 );
 
-assign cpu_data_rdata = (cpu_data_addr == 12'd1024)? {24'b0, ~switch[7:0]} :
+assign cpu_data_rdata = (cpu_data_addr == 12'd1024)? {24'b0, switch[7:0]} :
                                                       32'b0;
 
 //inst ram

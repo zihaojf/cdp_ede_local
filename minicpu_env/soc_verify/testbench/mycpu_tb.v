@@ -49,10 +49,33 @@ begin
 end
 always #5 clk=~clk;
 
-initial 
+initial
 begin
     //在这里可以自定义测试输入序列
-    switch = ~(8'h4);
+    switch = 8'h4;
+end
+
+initial
+begin
+    $monitor("time = %0t ns : led = %0d", $time, led);
+end
+
+//自动判分：led变为期望值5则通过，超时则失败
+initial
+begin
+    wait (led == 16'd5);
+    #100;
+    $display("TEST : led = %0d (expected 5) at time %0t ns", led, $time);
+    $display("TEST PASSED !!!");
+    $finish;
+end
+
+initial
+begin
+    #1000000;
+    $display("TEST : timeout, led = %0d (expected 5)", led);
+    $display("TEST FAILED !!!");
+    $finish;
 end
 
 soc_mini_top soc_mini

@@ -25,3 +25,5 @@ add_files -fileset constrs_1 -quiet ./constraints
 
 set_property -name "top" -value "tb_top" -objects  [get_filesets sim_1]
 set_property -name "xsim.simulate.log_all_signals" -value "1" -objects [get_filesets sim_1]
+# set simulation time
+set_property -name "xsim.simulate.runtime" -value "1000000 ns" -objects [get_filesets sim_1]
